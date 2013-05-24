@@ -1,0 +1,40 @@
+A TODO list for Profiling Helper
+
+a) Important/Urgent
+
+0) to make the editing of a table, add the type of the table work. VERY IMPORTANT!!!!
+1) create a way to add the name of the tables, and types from the import window
+2) when you change the "Separator Field" to refresh the preview
+3) when you export a table to be able to choose the quote and delimiter
+4) to add in the Result tab save table as a view and even export
+6) Some test cases and how to see if there is some error in the log file
+7) to modify the profiling class to not to add a space at the end of every line and to add the time of every property or the type
+
+b) New Features
+
+1) Finish the translations
+2) 
+3) 
+4) 
+5) 
+6) 
+7) 
+8)
+
+c) Preferences pane
+
+1) Language Selection
+2) 
+3) 
+4) 
+5) 
+6)
+7)
+8)
+
+d) Known Bugs
+
+1) If the columns in the table they do not have Types then the calculations will be wrong
+2) If the use first row as column headers is not selected then there is an error
+3) when at START there is an blank space at the end then it will not import that line
+4)

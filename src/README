@@ -1,0 +1,17 @@
+Profiling Helper
+
+###USAGE###
+
+You can find in the binaries folder applications for Ubuntu, Mac OS X (64 bit) and Windows
+if you use a different OS follow the installation guide at
+http://labrococo.dis.uniroma1.it/dokuwiki/doku.php?id=tut:profiling
+
+###INSTALLATION###
+
+All the systems, install qt development files, 
+open a command prompt at the extraction point and run:
+
+1. qmake
+2. make
+
+You will get an executable called ProfilingHelper in the build folder.

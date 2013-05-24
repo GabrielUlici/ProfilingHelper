@@ -1,0 +1,223 @@
+======= Tutorial: Profiling Helper ======
+
+Profiling Helper (version 1.0) is a application utility to perform queries over a given OpenRDK profiling file.\\
+
+===== 1 Installing =====
+
+The source code and binaries can be found in our [[http://labrococo.dis.uniroma1.it/svn/software-open/trunk/RDK-SPQR/src/apps/smallutils/legged/ProfilingHelper/|repository]].\\
+Inside the **binaries** folder are available compiled applications (**binaries that do not require Qt to be installed on your computer**) for [[ |Ubuntu 32bit]], [[http://labrococo.dis.uniroma1.it/svn/software-open/trunk/RDK-SPQR/src/apps/smallutils/legged/ProfilingHelper/binaries/ProfilingHelper%20Mac%20OS%20X%2064%20bit.dmg|Mac OS X 64bit]], Windows (Coming soon).
+
+==== 1.1 Dependencies ====
+
+  * Qt 4 (version 4.7.4 or higher) with qmake (version 2.0 or higher)
+  * SQLite 3 available at [[http://www.sqlite.org/|SQLite website]] 
+  * OpenRDK installed on your computer. //**Optional**//
+  
+=== 1.1.1 Sqlite3 check and installation===
+
+**Ubuntu** \\
+
+Open an terminal and write :
+<code>$ which sqlite3
+/usr/bin/sqlite3 
+</code>
+If SQLite3 is installed the output will be "/usr/bin/sqlite3", if you do not receive an output it is not installed.\\
+\\
+You can install SQLite 3 in 2 ways: \\
+1. Open the **Synaptic Package Manager** and search "sqlite3" and install it.\\
+2. Or download the source code, use the file sqlite-autoconf-[version].tar.gz, from the [[http://www.sqlite.org/download.html/|SQLite website]] and compile it. You will find the compile guide inside the archive.\\
+**WARNING!!!** Do not use the precompiled binaries.\\
+
+**Mac OS X**  \\
+
+Mac OS 10.5 and later comes with SQLite 3 preinstalled.\\
+Open an terminal and write :
+<code>$ which sqlite3
+/usr/bin/sqlite3 
+</code>
+If SQLite3 is installed the output will be "/usr/bin/sqlite3", if you do not receive an output it is not installed.\\
+Or if you have installed via MacPorts open terminal and write "port installed sqlite3". \\
+\\
+You can install SQLite 3 in 2 ways:\\
+1. With **MacPorts**. Open the terminal and write "sudo port install sqlite3".\\
+2. Or download the source code, use the file sqlite-autoconf-[version].tar.gz, from the [[http://www.sqlite.org/download.html/|SQLite website]] and compile it. You will find the compile guide inside the archive.\\
+**WARNING!!!** Do not use the precompiled binaries\\
+
+**Windows all versions**\\
+
+**Coming soon.**\\
+
+==== 1.2 Compile ====
+
+To compile from the source code download the **ProfilingHelper** code from svn or our online repository [[http://labrococo.dis.uniroma1.it/svn/software-open/trunk/RDK-SPQR/src/apps/smallutils/legged/ProfilingHelper/|ProfilingHelper]].\\
+Your folder hierarchy should look like this :
+
+<code> ProfilingHelper
+        - binaries
+        - buildapp
+	- otherfiles
+        - src</code>
+
+**ATTENTION!** You can delete the **binaries** folder if you want to compile.\\
+
+=== 1.2.1 Manual ===
+
+**First** please verify if you have installed qmake version 2.01 or later and not using an earlier version using this command :
+
+<code>$ [QtSDK installation folder]/QtSDK/Desktop/Qt/474/gcc/bin/qmake -v
+QMake version 2.01a
+Using Qt version 4.7.4 in [QtSDK installation folder]/QtSDK/Desktop/Qt/474/gcc/lib</code>
+
+If qmake version 2.01a or later is not present you need to download the lastest [[http://qt.nokia.com/downloads|Qt version]]\\
+
+To compile Profiling Helper, from terminal go into **ProfilingHelper** folder:\\
+
+**ATTENTION!** be sure that the file **profilinghelper.pro.user** DOES NOT EXIST in the folder, but **profilinghelper.pro** must exist.
+
+and type this into terminal:\\ 
+<code>$ cd build/
+$ [QtSDK installation folder]/QtSDK/Desktop/Qt/474/gcc/bin/qmake ../src
+$ make 
+</code>
+After this is done in the **build** folder will contain the executable and the subproduct who can freely delete (.o, makefile, etc..) but **ATTENTION!** DO NOT delete the file profiling.sqlitedb
+
+=== 1.2.2 Using the IDE ===
+
+The **ProfilingHelper/src** folder contains a **profilinghelper.pro** file which is a Qt Creator project file. You can open it with Qt Creator (version 2.2 or later) and build and run it. A new folder parallel to the one of the source will be created for each configuration ( debug, release, ... ) containing the the executable.\\
+
+===== 2 Guide =====
+
+After you generated the log file, refer to [[http://labrococo.dis.uniroma1.it/dokuwiki/doku.php?id=tut:profiling#how_to_create_a_profiling_file|how to create a profiling file]].\\
+After the creation of the profiling file run the script file, script.sh, inside "otherfiles" folder, on the profiling log, by:\\
+**ATTENTION!** The script file and the profiling log have to be in the same folder.\\
+<code>
+sh script.sh
+</code>
+When opening the application you will be presented with 4 sections :\\
+ - **Database** (all the information about the database, how many tables exist, the name and type of each column of the existing tables)\\
+ - **Table** (all the data of the selected table)\\
+ - **Query** \\
+ - **Result** ( the data from the executed query)\\ \\
+ [picture 1]\\ \\
+ First you need to open an existing database (**File->Open Database**) or create a new one (**File->New Database**) or press the keyboard keys Mac OS X (**command(⌘)+N**), Ubuntu (**Crtl+N**), Windows (**Coming Soon**). \\
+ After the creation of the database go to **File->Import->Table from Log File**, a window will appear to select the file then the windows below will pop-up and you will need to give a name to the new table, select the **Field Separator** (which it is the symbol that separate the text in the file, usually it is a blank space) and if you want to use the first row as column headers (names).\\ \\
+ [picture 2]\\ \\
+ When the import it is done you will have active two views one of the table names, with column name and type, and the other with the table data.\\ \\
+ [picture 3 and 4]\\ \\
+ In the **Query** section you will be able to select one of the 16 predefined queries, which are editable, or create you own, load one already written, save them and execute them.\\ \\
+ [picture 5]\\ \\
+ When executing a query the **Result** tab will be made active with the result of you query.\\ \\
+ [picture 6]\\ \\
+===== 3 FAQ =====
+
+  * **Any question? mail us.**\\
+
+===== 4 Additional Information =====
+
+==== 4.1 How to create a profiling file ====
+
+When you run your module add to the end the prefix --profiling\\
+
+Example:
+<code>
+$ ragent -c ran-demospa.config --profiling
+</code>
+
+==== 4.2 Information about the profiling file ====
+
+**Example of profiling file**
+
+<code>876 1410 180971 3055314624 RAGENT START 
+8864 1410 182971 3055314624 RAGENT loadingConfiguration 
+3171837 1250 1510769 3055314624 START perception	schedule: 0.117811 
+3173824 1250 1511770 3055314624 LOCK perception:enabled 
+3174005 1250 1511770 3055314624 UNLOCK perception:enabled 
+3175735 1250 1512769 3055314624 LOCK perception:state 
+3176052 1250 1512769 3055314624 UNLOCK perception:state 
+3176310 1250 1513768 3055314624 LOCK perception:state 
+3176650 1250 1513768 3055314624 UNLOCK perception:state 
+3178476 1250 1514769 3055314624 LOCK perception:stats/activityCounter 
+3178651 1250 1514769 3055314624 UNLOCK perception:stats/activityCounter 
+3178923 1250 1514769 3055314624 LOCK perception:/perception/stats/activityCounter 
+3179057 1250 1514769 3055314624 UNLOCK perception:/perception/stats/activityCounter 
+3180035 1250 1515768 3055314624 LOCK perception:stats/iterationDuration/last 
+3180223 1250 1516769 3055314624 UNLOCK perception:stats/iterationDuration/last 
+3180787 1250 1516769 3055314624 LOCK perception:/perception/stats/iterationDuration/last 
+3180915 1250 1516769 3055314624 UNLOCK perception:/perception/stats/iterationDuration/last 
+3181879 1250 1517768 3055314624 LOCK perception:stats/iterationDuration/mean 
+3182014 1250 1517768 3055314624 UNLOCK perception:stats/iterationDuration/mean 
+3182303 1250 1518769 3055314624 LOCK perception:/perception/stats/iterationDuration/mean 
+3182463 1250 1518769 3055314624 UNLOCK perception:/perception/stats/iterationDuration/mean 
+3183510 1250 1519768 3055314624 LOCK perception:stats/scheduleInterval/mean 
+3183689 1250 1519768 3055314624 UNLOCK perception:stats/scheduleInterval/mean 
+3183925 1250 1519768 3055314624 LOCK perception:/perception/stats/scheduleInterval/mean 
+3184044 1250 1519768 3055314624 UNLOCK perception:/perception/stats/scheduleInterval/mean 
+3184966 -1634 1520767 3055314624 LOCK perception:sys/scheduleMinInterval 
+3185585 -1634 1520767 3055314624 UNLOCK perception:sys/scheduleMinInterval 
+3190463 -1634 1522767 3055314624 LOCK perception:/perception/out/debugImage 
+3191399 -1634 1523768 3055314624 UNLOCK perception:/perception/out/debugImage 
+3196010 -1634 1525768 3055314624 LOCK perception:params/resolution </code>
+    
+**The meaning of the columns in the file is:**\\
+
+1) real timestamp in milliseconds since the start of RAgent\\
+2) cpu time not working on the nao\\
+3) Thread timestamp in microseconds\\
+4) Thread ID\\
+5) Event Type\\
+6) Event subject\\
+7) Other info\\
+
+**The meaning of RAGENT.**\\
+
+**The meaning of START and END.**\\
+	* In theory START corresponds to the session-> start () (or session_start) while the END corresponds to session->end () or session->terminated () (or SESSION_END_CATCH_TERMINATE or similar).\\
+
+**The meaning of LOCK and UNLOCK.**\\
+	* LOCK is invoked when a module blocks a property for his use, while UNLOCK when the module releases the property.
+
+**The meaning of QUEUE_FREEZE.**\\
+	* When the queue is downloaded by one of its subscribers.\\
+
+Example:\\
+11972107 -1982 5308193 2914626448 QUEUE_FREEZE networkmanager:in/messageQueueIn 0\\
+27986211 -1728 10597388 2914626448 QUEUE_FREEZE networkmanager:sendDataQueue 0\\
+
+**The meaning of "duration”.**\\
+	* Duration, which is at END, is the time between START and END of the same module in seconds using the thread timestamp.\\
+Example:\\
+2137198 667 1805725 3055285952 END executor duration: 0.07\\
+
+**The meaning of "schedule”.**\\
+	* Schedule, which is at START, is the time in seconds since the last start () of the same module using realtime (Timestamp).
+Example:\\
+2048027 -2022 1736734 3055285952 START executor schedule: 0.447462\\
+\\
+**General Example:**\\
+1634601 -1375 1476774 3055285952 LOCK Motion: stats / activityCounter\\
+1634781 -1375 1476774 3055285952 UNLOCK Motion: stats / activityCounter\\
+
+**Explanation:**\\
+- The thread number 3055285952, belonging to the module motion, has locked the property stats/activityCounter at 1634601 and released at 1634781 all in real-time, the lock then lasted 1634781-1634601 = 180ms.\\
+- From the point of view of the module, he locked the property at 1476774 and released it immediately, keeping it locked for 0ms of thread time: this means that in the other 180ms have been other threads taking the time, from his point of view, he locked and unlocked immediately the property.\\
+
+**What we can understand from the profiling log**\\
+- Which properties are locked for too long, check timestamp (first column, i.e. how long the property is being locked ).\\
+- Which properties require a long time to be read/written, check the time between LOCK and UNLOCK of the third column.\\
+- The scheduling frequency of a module, look at the range (first column) between two START. After a change in September 2011, no thread should be scheduled faster than 100Hz.\\
+- How long it takes an iteration of a module, check between START and END of that module using the time threads (third column), or at every END module name duration: in seconds.\\
+- The interval between the same module, look for START module name schedule: seconds.\\
+
+**Why until one line in the profiling log is the same Thread ID for all the modules, but after one point every module has it`s own Thread ID?**\\
+	* In the beginning, i.e., when the initConfigurationProperties(), initInterfaceProperties(), init() are called, there is only one thread running, after that, the module threads are spawned and the exec() of each of them are called.\\
+
+===== 5 Change Log =====
+
+Version 1.0\\
+- Import the profiling file\\
+- Execute queries on the profiling file\\
+- Export the profiling file\\
+
+===== 6 Known Bugs =====
+
+**No known bugs**

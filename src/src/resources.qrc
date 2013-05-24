@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/searchfind.png</file>
+        <file>images/whatis.png</file>
+        <file>images/abouti.png</file>
+        <file>images/icon.png</file>
+        <file>images/space.png</file>
+        <file>SQL/all.sql</file>
+        <file>SQL/frequencyModule.sql</file>
+        <file>SQL/moduleDuration.sql</file>
+        <file>SQL/propLockedUnlocked.sql</file>
+        <file>SQL/propReadWritten.sql</file>
+        <file>SQL/Executor/incoordinateBallField.sql</file>
+        <file>SQL/Executor/incoordinateBallImage.sql</file>
+        <file>SQL/Executor/ingoalMineLeftPost.sql</file>
+        <file>SQL/Executor/ingoalMineSeen.sql</file>
+        <file>SQL/Executor/ingoalOpponentLeftPost.sql</file>
+        <file>SQL/Executor/ingoalOpponentSeen.sql</file>
+        <file>SQL/Perception/outballInImage.sql</file>
+        <file>SQL/Perception/outballPercept.sql</file>
+        <file>SQL/Perception/outgoalMineLeftPost.sql</file>
+        <file>SQL/Perception/outgoalMineSeen.sql</file>
+        <file>SQL/Perception/outgoalOpponentLeftPost.sql</file>
+        <file>SQL/Perception/outgoalOpponentSeen.sql</file>
+    </qresource>
+</RCC>
